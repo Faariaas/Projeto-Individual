@@ -1,0 +1,112 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('/resorce/font/Pokemon\ Classic.ttf');
+}
+
+input {
+    font-family: Pokemon;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    background-color: black;
+}
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+/* CABEÇALHO */
+.header {
+    border: 10px solid red;
+    /* border-bottom: 10px solid #ff0000; */
+}
+
+.header .container {
+    justify-content: space-between;
+}
+
+.header a {
+    text-decoration: none;
+    color: #e3b062;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+.navbar {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: #e3b062;
+}
+
+
+.titulo {
+    color: #5bcd32;
+    width: fit-content;
+    font-weight: 500;
+}
+/* FIM DO CABEÇALHO*/
+
+/* BANNER */
+
+.banner {
+    height: 600px;
+    padding: 40px 0;
+    color: white;
+    background-image: url("../img/SmeargleBanner.png");
+    background-size: cover;
+    border: 10px solid green;
+}
+  
+.banner .container {
+    height: 400px;
+    font-size: 36px;
+    justify-content: center;
+    align-items: center;
+}
+  
+.tamanho-conteudo { 
+    height: fit-content !important;
+}
+  
+.banner p {
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    width: 280px;
+    font-size: 36px;
+}
+  
+.banner .container span {
+    font-weight: 800;
+}
+
+/* RODA PÉ */
+
+.footer {
+    /* background-color: #32b9cd; */
+    font-family: Pokemon;
+    height: 150px;
+    color: #fff;
+    display: flex;
+    font-size: 15px;
+    border: 10px solid darkmagenta;
+}
+  
+.footer .container {
+    justify-content: center;
+}
+
+/* FIM DO RODA PÉ*/
+  
