@@ -13,6 +13,8 @@ body {
     font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
     background-color: black;
+    /* simular altura da pagina */
+    height: 5000px;
 }
 
 
@@ -22,41 +24,36 @@ body {
     display: flex;
 }
 
-/* CABEÇALHO */
-.header {
-    border: 10px solid red;
-    /* border-bottom: 10px solid #ff0000; */
-}
-
-.header .container {
-    justify-content: space-between;
-}
-
-.header a {
-    text-decoration: none;
-    color: #e3b062;
-}
-
-.agora {
-    font-weight: 800;
-}
-
-.navbar {
-    width: 300px;
+nav{
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    list-style: none;
-    color: #e3b062;
 }
 
-
-.titulo {
-    color: #5bcd32;
-    width: fit-content;
-    font-weight: 500;
+nav .titulo{
+    color: #fff;
+    float: left;
+    display: block;
+    padding: 14px 16px;
 }
-/* FIM DO CABEÇALHO*/
+
+nav a{
+    color: #fff;
+    float: right;
+    text-decoration: none;
+    display: block;
+    padding: 14px 16px;
+}
+
+nav a:hover{
+    transition: 0.5s;
+    background-color: #e4e4e4;
+    color: #333;
+}
 
 /* BANNER */
 
@@ -93,6 +90,8 @@ body {
 }
 
 /* RODA PÉ */
+
+
 
 .footer {
     /* background-color: #32b9cd; */

@@ -1,0 +1,160 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('/resorce/font/Pokemon\ Classic.ttf');
+}
+
+input {
+    font-family: Pokemon;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    background-color: black;
+}
+
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+/* CABEÇALHO */
+.header {
+    border: 10px solid red;
+    /* border-bottom: 10px solid #ff0000; */
+}
+
+.header .container {
+    justify-content: space-between;
+}
+
+.header a {
+    text-decoration: none;
+    color: #e3b062;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+.navbar {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    color: #e3b062;
+}
+
+
+.titulo {
+    color: #5bcd32;
+    width: fit-content;
+    font-weight: 500;
+}
+/* FIM DO CABEÇALHO*/
+
+.main-cadastro{
+    width: 100vw;
+    height: 100vh;
+    background-color: #201b2c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-cad{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-cad > h2{
+    color: #77ffc0;
+    font-size: 3vw;
+}
+
+.left-cad-image{
+    width: 35vw;
+}
+
+.right-cad {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-cad {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #2f2841;
+    border-radius: 25px;
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-cad > h1 {
+    color: #00ff88;
+    font-weight: 800;
+    margin: 0;
+    font-family: pokemon;
+}
+
+.textfield{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield > input {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: beige;
+    color: #201b2c;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > label {
+    color: #f0ffffde;
+    margin-bottom: 10px;
+    font-family: pokemon;
+}
+
+.textfield > input::placeholder{
+    color: f0ffff94;
+}
+
+.btn-cad{
+    width: 100%;
+    padding: 16px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-family: pokemon;
+    cursor: pointer;
+    box-shadow: 0px 10px 30px;
+}
