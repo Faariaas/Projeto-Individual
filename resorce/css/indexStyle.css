@@ -30,15 +30,21 @@ nav{
     position: fixed;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-nav .titulo{
+nav .header_titulo{
     color: #fff;
     float: left;
     display: block;
     padding: 14px 16px;
+}
+
+nav .header_links_ancora{
+    display: flex;
+    float: right;
+    justify-content: space-between  ;
 }
 
 nav a{
@@ -55,15 +61,21 @@ nav a:hover{
     color: #333;
 }
 
+.header_abaixa{
+    height: 70px;
+    width: 100%;
+    /* border: 10px solid pink; */
+}
+
 /* BANNER */
 
 .banner {
-    height: 600px;
+    height: fit-content;
     padding: 40px 0;
     color: white;
     background-image: url("../img/SmeargleBanner.png");
     background-size: cover;
-    border: 10px solid green;
+    /* border: 10px solid green; */
 }
   
 .banner .container {
@@ -100,7 +112,7 @@ nav a:hover{
     color: #fff;
     display: flex;
     font-size: 15px;
-    border: 10px solid darkmagenta;
+    /* border: 10px solid darkmagenta; */
 }
   
 .footer .container {
