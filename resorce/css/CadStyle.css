@@ -1,59 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme&family=Righteous&display=swap');
 @font-face {
     font-family: 'Pokemon';
     src: url('/resorce/font/Pokemon\ Classic.ttf');
 }
 
-input {
-    font-family: pokemon;
+@keyframes bounce-1 {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 15px;
-    background-color: black;
+    background-image: linear-gradient(to bottom right, #333, black);
+    /* simular altura da pagina */
+    /* height: 5000px; */
 }
 
+/* HEADER*/
 
-.container {
-    width: 80%;
-    margin: auto;
-    display: flex;
-}
-
-/* CABEÇALHO */
-nav{
+.header {
     background-color: #333;
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 20px ;
+    padding-left: 50px;
+    font-family: 'BioRhyme', serif;
 }
 
-nav .titulo{
-    color: #fff;
-    float: left;
-    display: block;
+.header-home {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #e4e4e4;
+}
+
+.header-img{
+    height: 75px;
+}
+
+.header-links {
+    display: flex;
+    gap: 50px;
+}
+
+.link {
+    color: #e4e4e4;
+    font-weight: 400;
+    font-size: 20px;
     padding: 14px 16px;
 }
 
-nav a{
-    color: #fff;
-    float: right;
-    text-decoration: none;
-    display: block;
-    padding: 14px 16px;
-}
-
-nav a:hover{
-    transition: 0.5s;
+.link:hover{
+    transition: all 0.5s ease;
     background-color: #e4e4e4;
     color: #333;
+    border-radius: 50px;
 }
-/* FIM DO CABEÇALHO*/
+
+/* FIM DO HEADER*/
 
 .main-cadastro{
     width: 100vw;

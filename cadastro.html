@@ -1,91 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Cadastro</title>
+    <title>Cadastro</title>
+
     <script src="./js/funcoes.js"></script>
-    <link rel="stylesheet" href="/resorce/css/CadStyle.css">
+
+    <link rel="icon" type="imagem/png" href="/resorce/img/icons/pokestop.png" />
+
+    <link rel="stylesheet" href="./resorce/css/CadStyle.css">
+
 </head>
-
 <body>
+    <header class="header">
 
-    <!--header inicio-->
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo"><a href="./index.html">Toca do Smeargle</a></h1>
-            <ul class="navbar">
-                <li><a href="#">Simulador</a></li>
-                <li><a href="#">Sobre Mim</a></li>
-                <li>|</li>
-                <li><a href="#">Login</a></li>
-                <li><a href="./cadastro.html">Cadastro</a></li>
-            </ul>
+        <a class="header-home" href="index.html">
+            <img class="header-img" src="./resorce/img/icons/markpokestop.png" alt="Logo toca do smeargle">
+            <h1>pokestop</h1>
+        </a>
+
+        <nav class="header-links">
+            <a class="link" href="#">Sobre Mim</a>
+            <a class="link" href="#">Toca do Smeargle</a>
+            <a class="link" href="#">PikaClicker</a>
+            <a class="link" href="#">Entrar</a>
+        </nav>
+
+    </header>
+
+
+    <div class="main-cadastro">
+
+        <div class="left-cad">
+            <img src="resorce/img/professor-oak.jpg" class="left-cad-image" alt="Professor">
         </div>
-    </div>
-    <!--header fim-->
 
+        <div class="right-cad">
 
-    <div class="banner ">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
+            <div class="card-cad">
+                <h1>CADASTRE-SE</h1>
+
+                <div class="textfield">
+                    <label for="user">Usuario</label>
+                    <input id="nome_input" type="text" name="usuario" placeholder="Qual seu NICKNAME">
+                </div>
+                
+                <div class="textfield">
+                    <label for="user">email</label>
+                    <input id="email_input" type="text" name="usuario" placeholder="Qual seu EMAIL">
+                </div>
+
+                <div class="textfield">
+                    <label for="user">senha</label>
+                    <input id="senha_input" type="password" name="senha" placeholder="Informe uma SENHA">
+                </div>
+
+                <div class="textfield">
+                    <label for="user">Confime sua senha</label>
+                    <input id="confirmacao_senha_input" type="password" name="senha" placeholder="Confirme sua SENHA">
+                </div>
+
+                <div class="textfield">
+                    <select name="iniciais" id="sel_pokemon">
+                        <option value="0">-Teporada-</option>
+                        <option value="1">1ª TEMPORADA</option>
+                        <option value="2">2ª TEMPORADA</option>
+                        <option value="3">3ª TEMPORADA</option>
+                        <option value="4">4ª TEMPORADA</option>
+                        <option value="5">5ª TEMPORADA</option>
+                        <option value="6">6ª TEMPORADA</option>
+                    </select>
+                </div>
+                <button class="btn-cad" onclick="cadastrar()">Cadastre-se</button>
             </div>
         </div>
-        <div class="container tamanho-conteudo">
-            <div class="card medio">
-                <h2>Bem-vindo!</h2>
-                <div class="formulario">
-
-                    <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-
-                    <span class="tipo_campo">Nick:</span>
-                    <input id="nome_input" type="text" placeholder="Seu nome">
-
-                    <span class="tipo_campo">E-mail:</span>
-                    <input id="email_input" type="text" placeholder="meuemail@provedor.com">
-
-                    <span class="tipo_campo">Senha:</span>
-                    <input id="senha_input" type="password" placeholder="******">
-
-                    <span class="tipo_campo">Confirmação da Senha:</span>
-                    <input id="confirmacao_senha_input" type="password" placeholder="******">
-
-                    <button class="btn" onclick="cadastrar()">Cadastrar</button>
-
-                </div>
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login">
-
-                </div>
-            </div>
-        </div>
     </div>
-
-    <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por um aluno &hearts;SPTech &copy; 2022</h4>
-        </div>
-    </div>
-    <!--footer fim-->
-
-
 </body>
-
 </html>
-
 <script>
     function cadastrar() {
-        aguardar();
+        // aguardar();
 
         //Recupere o valor da nova input pelo nome do id
         // Agora vá para o método fetch logo abaixo
@@ -95,8 +91,8 @@
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Preencha todos os campos para prosseguir!";
+            // cardErro.style.display = "block"
+            alert("Preencha todos os campos para prosseguir!");
 
             finalizarAguardar();
             return false;
