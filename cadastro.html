@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 
-    <script src="./js/funcoes.js"></script>
+    
 
     <link rel="icon" type="imagem/png" href="/resorce/img/icons/pokestop.png" />
 
@@ -38,31 +38,53 @@
         </div>
 
         <div class="right-cad">
-
-            <div class="card-cad">
-                <h1>CADASTRE-SE</h1>
-
+            
+            <form class="form" id="form">
                 <div class="textfield">
-                    <label for="user">Usuario</label>
-                    <input id="nome_input" type="text" name="usuario" placeholder="Qual seu NICKNAME">
+
+                    <label for="nome_input">Usuario</label>
+                    <input id="nome_input" type="text" placeholder="Qual seu NICKNAME">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
                 </div>
                 
                 <div class="textfield">
-                    <label for="user">email</label>
-                    <input id="email_input" type="text" name="usuario" placeholder="Qual seu EMAIL">
+
+                    <label for="email_input">email</label>
+                    <input id="email_input" type="email" placeholder="Qual seu EMAIL">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
                 </div>
 
                 <div class="textfield">
-                    <label for="user">senha</label>
-                    <input id="senha_input" type="password" name="senha" placeholder="Informe uma SENHA">
+
+                    <label for="senha_input">senha</label>
+                    <input id="senha_input" type="password" placeholder="Informe uma SENHA">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
                 </div>
 
                 <div class="textfield">
-                    <label for="user">Confime sua senha</label>
-                    <input id="confirmacao_senha_input" type="password" name="senha" placeholder="Confirme sua SENHA">
+
+                    <label for="confirmacao_senha_input">Confime sua senha</label>
+                    <input id="confirmacao_senha_input" type="password" placeholder="Confirme sua SENHA">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
                 </div>
 
-                <div class="textfield">
+                <!-- <div class="textfield">
                     <select name="iniciais" id="sel_pokemon">
                         <option value="0">-Teporada-</option>
                         <option value="1">1ª TEMPORADA</option>
@@ -72,91 +94,15 @@
                         <option value="5">5ª TEMPORADA</option>
                         <option value="6">6ª TEMPORADA</option>
                     </select>
-                </div>
-                <button class="btn-cad" onclick="cadastrar()">Cadastre-se</button>
-            </div>
+                </div> 
+            -->
+                <button class="btn-cad" onclick="cadastra()" type="receba">Cadastre-se</button>
+            </form>
         </div>
+
+        
     </div>
 </body>
 </html>
-<script>
-    function cadastrar() {
-        // aguardar();
-
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = nome_input.value;
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-        var confirmacaoSenhaVar = confirmacao_senha_input.value;
-
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            // cardErro.style.display = "block"
-            alert("Preencha todos os campos para prosseguir!");
-
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        if (senhaVar != confirmacaoSenhaVar) {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais para prosseguir!";
-            finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
-        }
-
-        // Enviando o valor da nova input
-        fetch("/usuarios/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                cardErro.style.display = "block"
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
-                window.location = "login.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
-</script>
+<script src="./js/validacao.js"></script>
+    <!-- <script src="./js/funcoes.js"></script> -->

@@ -106,7 +106,7 @@ body {
     align-items: center;
 }
 
-.card-cad {
+.form {
     width: 60%;
     display: flex;
     justify-content: center;
@@ -118,7 +118,7 @@ body {
     box-shadow: 0px 10px 40px #00000056;
 }
 
-.card-cad > h1 {
+.form > h1 {
     color: #00ff88;
     font-weight: 800;
     margin: 0;
@@ -132,10 +132,12 @@ body {
     align-items: flex-start;
     justify-content: center;
     margin: 10px 0px;
+    position: relative;
 }
 
 .textfield > input {
     width: 100%;
+    display: block;
     border: none;
     border-radius: 5px;
     padding: 15px;
@@ -143,7 +145,7 @@ body {
     color: #201b2c;
     font-size: 12pt;
     box-shadow: 0px 10px 40px #00000056;
-    outline: none;
+    outline: 0;
     box-sizing: border-box;
 }
 
@@ -151,11 +153,48 @@ body {
     color: #f0ffffde;
     margin-bottom: 10px;
     font-family: pokemon;
+    display: inline-block;
 }
 
 .textfield > input::placeholder{
     color: f0ffff94;
 }
+
+.textfield i {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    visibility: hidden;
+}
+
+.textfield.error input {
+    border: 3px solid #db5a5a;
+}
+
+.textfield.error img.img-error {
+    visibility: visible;
+}
+
+.textfield.success input {
+    border: 3px solid #4eca64;
+}
+
+.textfield.success img.img-success {
+    visibility: visible;
+}
+
+.textfield.error small{
+    color: #DB5A5A;
+    visibility: visible;
+}
+
+.textfield small {
+    visibility: hidden;
+    /* position: absolute; */
+    margin-top: 5px;
+    font-size: 14px;
+}
+
 
 .btn-cad{
     width: 100%;
