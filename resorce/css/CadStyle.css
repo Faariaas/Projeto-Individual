@@ -74,7 +74,7 @@ body {
 .main-cadastro{
     width: 100vw;
     height: 100vh;
-    background-color: #201b2c;
+    /* background-color: #201b2c; */
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-designer{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 500px;
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.gabs {
+    position: absolute;
+    bottom: 0;
+    width: 500px;
+    animation: gabsJump-animation 0.006s infinite linear;
+}
+
+@keyframes gabsJump-animation{
+    from {
+        right: -80%;
+    }
+
+    to {
+        right: 100%;
+    }
+
+}
