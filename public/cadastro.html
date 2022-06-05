@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+
+    <script src="./js/validacao.js"></script>
+
+    <link rel="icon" type="imagem/png" href="/resorce/img/icons/pokestop.png" />
+
+    <link rel="stylesheet" href="./resorce/css/CadStyle.css">
+
+</head>
+<body>
+    <header class="header">
+
+        <a class="header-home" href="index.html">
+            <img class="header-img" src="./resorce/img/icons/markpokestop.png" alt="Logo toca do smeargle">
+            <h1>pokestop</h1>
+        </a>
+
+        <nav class="header-links">
+            <a class="link" href="#">Sobre Mim</a>
+            <a class="link" href="#">Toca do Smeargle</a>
+            <a class="link" href="pikaRunning.html">PikaRunning</a>
+            <a class="link" href="#">Entrar</a>
+        </nav>
+
+    </header>
+
+
+    <div class="main-cadastro">
+
+        <div class="left-cad">
+            <img src="resorce/img/professor-carvalho.png" class="left-cad-image" alt="Professor">
+            <span class="mensagem_volta">PorFavor!!!<br>me de seus dados</span>
+        </div>
+
+        <div class="right-cad">
+            
+            <form class="form" id="form" method="GET" action="#">
+                <h1>Cadastre-se</h1>
+
+                <div class="textfield">
+
+                    <label for="nome_input">Usuario</label>
+                    <input id="nome_input" type="text" placeholder="Qual seu NICKNAME">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+                
+                <div class="textfield">
+
+                    <label for="email_input">email</label>
+                    <input id="email_input" type="email" placeholder="Qual seu EMAIL">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+
+                <div class="textfield">
+
+                    <label for="senha_input">senha</label>
+                    <input id="senha_input" type="password" placeholder="Informe uma SENHA">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+
+                <div class="textfield">
+
+                    <label for="confirmacao_senha_input">Confime sua senha</label>
+                    <input id="confirmacao_senha_input" type="password" placeholder="Confirme sua SENHA">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+
+                <!-- <div class="textfield">
+                    <select name="iniciais" id="sel_pokemon">
+                        <option value="0">-Teporada-</option>
+                        <option value="1">1ª TEMPORADA</option>
+                        <option value="2">2ª TEMPORADA</option>
+                        <option value="3">3ª TEMPORADA</option>
+                        <option value="4">4ª TEMPORADA</option>
+                        <option value="5">5ª TEMPORADA</option>
+                        <option value="6">6ª TEMPORADA</option>
+                    </select>
+                </div> 
+            -->
+                <button class="btn-cad" onclick="cadastrar()" type="receba">Cadastre-se</button>
+            </form>
+        </div>
+        <!--demorou mais foi-->
+        
+    </div>
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+        validar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = nome_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            alert('Preencha todos os campos');
+
+            return false;
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+
+                alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+</script>

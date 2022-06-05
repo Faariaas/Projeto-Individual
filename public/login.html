@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada Pokemon</title>
+
+    <script src="./js/funcoes.js"></script>
+    <link rel="icon" type="imagem/png" href="/resorce/img/icons/pokestop.png" />
+    
+    <link rel="stylesheet" href="./resorce/css/loginStyle.css">
+</head>
+
+<body>
+    <header class="header">
+
+        <a class="header-home" href="index.html">
+            <img class="header-img" src="./resorce/img/icons/markpokestop.png" alt="Logo toca do smeargle">
+            <h1>pokestop</h1>
+        </a>
+
+        <nav class="header-links">
+            <a class="link" href="#">Sobre Mim</a>
+            <a class="link" href="#">Toca do Smeargle</a>
+            <a class="link" href="pikaRunning.html">PikaRunning</a>
+            <a class="link" href="#">Entrar</a>
+        </nav>
+
+    </header>
+
+
+    <div class="main-cadastro">
+
+        <div class="left-cad">
+            <img src="resorce/img/gengarSentado.jpg" class="left-cad-image" alt="Professor">
+            <span class="mensagem_volta">Ainda bem que voltou,<br>Tava com saudade</span>
+        </div>
+
+        <div class="right-cad">
+            
+            <form class="form" id="form" method="GET" action="#">
+                <h1>Bem vindo de volta</h1>
+
+                <div class="textfield">
+
+                    <label for="email_input">email</label>
+                    <input id="email_input" type="email" placeholder="Qual seu EMAIL">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+                
+                <div class="textfield">
+
+                    <label for="senha_input">senha</label>
+                    <input id="senha_input" type="password" placeholder="Informe uma SENHA">
+                    <i><img class="img-success" src="./resorce/img/icons/success-icon.svg" alt=""></i>
+                    <i><img class="img-error" src="./resorce/img/icons/error-icon.svg" alt=""></i>
+
+                    <small>Error mensage</small>
+
+                </div>
+                <h6>Não possui conta? <a href="cadastro.html">cadastre-se</a></h6>
+                <button class="btn-cad" onclick="entrar()" type="receba">Entrar</button>
+            </form>
+        </div>
+        <!--demorou mais foi-->
+        
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+
+    function entrar() {
+
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert('Mensagem de erro para todos os campos em branco');
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.usuario;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    setTimeout(function () {
+                        window.location = "perfil.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>
