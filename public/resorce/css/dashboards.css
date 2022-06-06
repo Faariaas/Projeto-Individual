@@ -1,9 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=BioRhyme&family=Righteous&display=swap');
+@font-face {
+    font-family: 'Pokemon';
+    src: url('/resorce/font/Pokemon\ Classic.ttf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Barlow', "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    /* background-image: url("/public/resorce/img/pikachusurfista.jpeg");
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: auto;
+    background-size: 100% 100%; */
+    background-image: linear-gradient(to bottom right,  #333, #333 );
+    /* simular altura da pagina */
+    /* height: 5000px; */
+}
+
+/* HEADER*/
+
+.header {
+    background-color: #333;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-right: 20px ;
+    padding-left: 50px;
+    font-family: 'BioRhyme', serif;
+}
+
+.header-home {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #e4e4e4;
+}
+
+.header-img{
+    height: 75px;
+}
+
+.header-links {
+    display: flex;
+    gap: 50px;
+}
+
+.link {
+    color: #e4e4e4;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 14px 16px;
+}
+
+.link:hover{
+    transition: all 0.5s ease;
+    background-color: #e4e4e4;
+    color: #333;
+    border-radius: 50px;
+}
+
+/* FIM DO HEADER*/
+
+
 /* pagina mural */
 
-*,
-body {
-  font-family: "Exo 2", sans-serif;
-}
 
 .dash-right .avisos {
   width: 100%;
@@ -110,8 +179,8 @@ body {
 }
 
 .dash {
-  width: 75%;
-  position: relative;
+  width: 100%;
+  /* position: relative; */
   top: 0;
   left: 25%;
   background-color: #161618;
@@ -243,4 +312,124 @@ body {
   background-color: white;
   margin: 5px;
   border-radius: 3px;
+}
+
+.janela {
+  display: flex;
+  justify-content: first baseline;
+  width: 100%;
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+.header-left {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-right: 3px solid #32b9cd;
+  background-color: #212124;
+  /* border: 3px solid pink; */
+}
+
+.dash-right {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  background-color: #161618;
+  position: relative;
+  top: 0;
+  /* left: 25%; */
+}
+
+.header-left h1 {
+  color: #32b9cd;
+}
+
+.hello {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hello h3 {
+  color: #e3b062;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.hello h3 span {
+  font-weight: 800;
+}
+
+.btn-nav {
+  color: #e4e4e4;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 14px 16px;
+}
+
+.btn-nav-white {
+  color: #e4e4e4;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 14px 16px;
+}
+
+.btn-nav-white h3 {
+  color: #e3e3e3;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-nav:hover{
+  transition: all 0.5s ease;
+  background-color: #e4e4e4;
+  color: #333;
+  border-radius: 50px;
+}
+
+.btn-nav-white:hover{
+  transition: all 0.5s ease;
+  background-color: #e4e4e4;
+  color: #333;
+  border-radius: 50px;
+}
+.btn-nav-white h3:hover{
+  transition: all 0.5s ease;
+  background-color: #e4e4e4;
+  color: #333;
+  border-radius: 50px;
+}
+
+
+
+/* .btn-nav h3,
+.btn-logout h3 {
+ color: #e4e4e4;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 14px 16px;
+} */
+
+.btn-logout {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #32b9cd;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px 15px;
+  margin-bottom: 100px;
+  cursor: pointer;
 }

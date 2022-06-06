@@ -6,9 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Dashboards</title>
+    <title>Pokestop | Toca do Smeargle</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="imagem/png" href="/resorce/img/icons/pokestop.png" />
+
     <link rel="stylesheet" href="./resorce/css/dashboards.css">
     <script src="../js/funcoes.js"></script>
 
@@ -24,29 +25,39 @@
 
 <body onload="validarSessao(), atualizarFeed()">
 
+    <header class="header">
+
+        <a class="header-home" href="index.html">
+            <img class="header-img" src="./resorce/img/icons/markpokestop.png" alt="Logo toca do smeargle">
+            <h1>pokestop</h1>
+        </a>
+
+        <nav class="header-links">
+            <a class="link" href="sobre.html">Sobre</a>
+            <a class="link" href="#">Estatisticas</a>
+            <a class="link" href="pikaRunning.html">pikaRunning</a>
+            <a class="link" href="login.html">Entrar</a>
+        </nav>
+
+    </header>
+
     <div class="janela">
         <div class="header-left">
-            <h1>AcquaTec</h1>
+            <h1>Grafico</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
-            </div>
-
             <div class="btn-nav">
 
-                <h3>Gráficos</h3>
+                <h3>Estatisticas</h3>
 
             </div>
 
             <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                <a href="mural.html">
+                    <h3>Toca do Smeargle</h3>
                 </a>
             </div>
 
@@ -59,10 +70,10 @@
         <div class="dash">
             <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Aquario 1</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Aquario 2</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Aquario 3</button>
-                <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Aquario 4</button>
+                <!-- <button class="btn-chart btn-pink" onclick="obterDadosGrafico(1)">Aquario 1</button> -->
+                <!-- <button class="btn-chart btn-white" onclick="obterDadosGrafico(2)">Aquario 2</button> -->
+                <!-- <button class="btn-chart btn-white" onclick="obterDadosGrafico(3)">Aquario 3</button> -->
+                <!-- <button class="btn-chart btn-white" onclick="obterDadosGrafico(4)">Aquario 4</button> -->
             </div>
             <div>
                 <h3 class="tituloGraficos">
@@ -70,7 +81,7 @@
                 </h3>
             </div>
             <div class="graph">
-                <canvas id="canvas_grafico"></canvas>
+                <canvas id="mychart"></canvas>
             </div>
         </div>
     </div>
@@ -81,19 +92,68 @@
 </html>
 
 <script>
+    const labels = [
+        'Vezes selecionados',
+    ];
 
-    let proximaAtualizacao;
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Charmander',
+        backgroundColor: 'rgb(255, 0, 0)',
+        borderColor: 'rgb(255, 0, 0)',
+        data: [147],
+      },
+      {
+        label: 'Squirtle',
+        backgroundColor: 'rgb(0, 0, 255)',
+        borderColor: 'rgb(0, 0, 255)',
+        data: [80],
+      },
+      {
+        label: 'bulbassaur',
+        backgroundColor: 'rgb(0, 255, 0)',
+        borderColor: 'rgb(0, 255, 0)',
+        data: [64],
+      }
+    ]
+    };
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {}
+    };
 
-    window.onload = obterDadosGrafico(1);
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    verificar_autenticacao();
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById("tituloAquario")
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
-    }
+
+
+
+
+
+
+
+
+
+    // let proximaAtualizacao;
+
+    // window.onload = obterDadosGrafico(1);
+
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    // verificar_autenticacao();
+
+    // function alterarTitulo(idAquario) {
+    //     var tituloAquario = document.getElementById("tituloAquario")
+    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+    // }
+
+
+
+
+
+
 
     // O gráfico é construído com três funções:
     // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
@@ -106,111 +166,133 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
-        alterarTitulo(idAquario)
 
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
+
+
+
+
+    // function obterDadosGrafico(idAquario) {
+    //     alterarTitulo(idAquario)
+
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico(resposta, idAquario);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
+
+
+
+
+
 
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
-        console.log('iniciando plotagem do gráfico...');
 
-        var dados = {
-            labels: [],
-            datasets: [
-                {
-                    yAxisID: 'y-umidade',
-                    label: 'Umidade',
-                    borderColor: '#32B9CD',
-                    backgroundColor: '#32b9cd8f',
-                    fill: true,
-                    data: []
-                },
-                {
-                    yAxisID: 'y-temperatura',
-                    label: 'Temperatura',
-                    borderColor: '#FFF',
-                    backgroundColor: '#32b9cd8f',
-                    fill: true,
-                    data: []
-                }
-            ]
-        };
 
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            dados.labels.push(registro.momento_grafico);
-            dados.datasets[0].data.push(registro.umidade);
-            dados.datasets[1].data.push(registro.temperatura);
-        }
 
-        console.log(JSON.stringify(dados));
 
-        var ctx = canvas_grafico.getContext('2d');
-        window.grafico_linha = Chart.Line(ctx, {
-            data: dados,
-            options: {
-                responsive: true,
-                animation: { duration: 500 },
-                hoverMode: 'index',
-                stacked: false,
-                title: {
-                    display: false,
-                    text: 'Dados capturados'
-                },
-                scales: {
-                    yAxes: [{
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        id: 'y-temperatura',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        }
-                    }, {
-                        type: 'linear',
-                        display: false,
-                        position: 'right',
-                        id: 'y-umidade',
-                        ticks: {
-                            beginAtZero: true,
-                            max: 100,
-                            min: 0
-                        },
 
-                        gridLines: {
-                            drawOnChartArea: false,
-                        },
-                    }],
-                }
-            }
-        });
+    // function plotarGrafico(resposta, idAquario) {
+    //     console.log('iniciando plotagem do gráfico...');
 
-        setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-    }
+    //     var dados = {
+    //         labels: [],
+    //         datasets: [
+    //             {
+    //                 yAxisID: 'y-umidade',
+    //                 label: 'Umidade',
+    //                 borderColor: '#32B9CD',
+    //                 backgroundColor: '#32b9cd8f',
+    //                 fill: true,
+    //                 data: []
+    //             },
+    //             {
+    //                 yAxisID: 'y-temperatura',
+    //                 label: 'Temperatura',
+    //                 borderColor: '#FFF',
+    //                 backgroundColor: '#32b9cd8f',
+    //                 fill: true,
+    //                 data: []
+    //             }
+    //         ]
+    //     };
+
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         dados.labels.push(registro.momento_grafico);
+    //         dados.datasets[0].data.push(registro.umidade);
+    //         dados.datasets[1].data.push(registro.temperatura);
+    //     }
+
+    //     console.log(JSON.stringify(dados));
+
+    //     var ctx = canvas_grafico.getContext('2d');
+    //     window.grafico_linha = Chart.Line(ctx, {
+    //         data: dados,
+    //         options: {
+    //             responsive: true,
+    //             animation: { duration: 500 },
+    //             hoverMode: 'index',
+    //             stacked: false,
+    //             title: {
+    //                 display: false,
+    //                 text: 'Dados capturados'
+    //             },
+    //             scales: {
+    //                 yAxes: [{
+    //                     type: 'linear',
+    //                     display: true,
+    //                     position: 'left',
+    //                     id: 'y-temperatura',
+    //                     ticks: {
+    //                         beginAtZero: true,
+    //                         max: 100,
+    //                         min: 0
+    //                     }
+    //                 }, {
+    //                     type: 'linear',
+    //                     display: false,
+    //                     position: 'right',
+    //                     id: 'y-umidade',
+    //                     ticks: {
+    //                         beginAtZero: true,
+    //                         max: 100,
+    //                         min: 0
+    //                     },
+
+    //                     gridLines: {
+    //                         drawOnChartArea: false,
+    //                     },
+    //                 }],
+    //             }
+    //         }
+    //     });
+
+    //     setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    // }
+
+
+
+
+
 
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -218,39 +300,50 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados) {
 
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico: ${dados}`);
 
-                    // tirando e colocando valores no gráfico
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+
+    // function atualizarGrafico(idAquario, dados) {
+
+    //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (novoRegistro) {
+
+    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+    //                 console.log(`Dados atuais do gráfico: ${dados}`);
+
+    //                 // tirando e colocando valores no gráfico
+    //                 dados.labels.shift(); // apagar o primeiro
+    //                 dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
                     
-                    dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                    dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+    //                 dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+    //                 dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
                     
-                    dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+    //                 dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+    //                 dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
-                    window.grafico_linha.update();
+    //                 window.grafico_linha.update();
 
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados), 2000);
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
 
-    }
+    // }
+</script>
+<script>
+    const myChart = new Chart(
+      document.getElementById('mychart'),
+      config
+    );
 </script>
